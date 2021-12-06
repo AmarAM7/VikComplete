@@ -157,6 +157,7 @@ public class AIController : MonoBehaviour
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        
     }
 
     void Move(float speed)

@@ -7948,19 +7948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wayPoints: {fileID: 1510873535}
   _wayPoint: {fileID: 1510873537}
---- !u!65 &1510873539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510873529}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.42670232, z: 2.0317907}
-  m_Center: {x: 2.5169313e-15, y: 0.28664884, z: 0.35661873}
 --- !u!114 &1510873540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7977,7 +7964,7 @@ MonoBehaviour:
   startWaitTime: 4
   timeToRotate: 2
   speedWalk: 2
-  speedRun: 6
+  speedRun: 4
   viewRadius: 15
   viewAngle: 90
   playerMask:

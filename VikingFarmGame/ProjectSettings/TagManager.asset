@@ -14,6 +14,7 @@ TagManager:
   - Fire
   - Crystal
   - Hammer
+  - Event
   layers:
   - Default
   - TransparentFX
