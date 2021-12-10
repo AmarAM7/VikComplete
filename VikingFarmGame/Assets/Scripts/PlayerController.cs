@@ -28,8 +28,10 @@ public class PlayerController : MonoBehaviour
     public GameObject crossHair;
     public AudioSource audioo;
     public GameObject bow;
+
     
-    
+    public Joystick joystick;
+    public Joystick rJoystick;
 
     //Interaction components
     PlayerInteraction playerInteraction; 
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         //Get movement components
         _controller = GetComponent<CharacterController>();
         myAnimator = GetComponent<Animator>();
+        
 
         //Get interaction component
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
@@ -90,11 +93,14 @@ public class PlayerController : MonoBehaviour
 
         if (canMove)
         {
-            rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-            rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+            //rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+            //rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotation.y += rJoystick.Horizontal * lookSpeed;
+            rotation.x += -rJoystick.Vertical * lookSpeed;
             rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
             playerCameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
             transform.eulerAngles = new Vector2(0, rotation.y);
+
             
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -117,7 +123,6 @@ public class PlayerController : MonoBehaviour
             pullString.SetActive(true);
             flatString.SetActive(false);
             crossHair.SetActive(true);
-            
         }
         else
         {
@@ -127,10 +132,9 @@ public class PlayerController : MonoBehaviour
             crossHair.SetActive(false);
         }
 
-        
+
 
     }
-
     public void Interact()
     {
         //Tool interaction
@@ -158,12 +162,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*public void Aim()
+    {
+        myAnimator.SetBool("isBowingAim", true);
+        pullString.SetActive(true);
+        flatString.SetActive(false);
+        crossHair.SetActive(true);
+    }
+    public void NoAim()
+    {
+        myAnimator.SetBool("isBowingAim", false);
+        pullString.SetActive(false);
+        flatString.SetActive(true);
+        crossHair.SetActive(false);
+    }*/
+
     public void Move()
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        float curSpeedX = canMove ? Speed * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? Speed * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? Speed * joystick.Vertical : 0;
+        float curSpeedY = canMove ? Speed * joystick.Horizontal : 0;
+        //float curSpeedX = canMove ? Speed * (Input.GetAxis("Vertical")) : 0;
+        //float curSpeedY = canMove ? Speed * (Input.GetAxis("Horizontal")) : 0;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         // Move the controller

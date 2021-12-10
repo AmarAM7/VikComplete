@@ -18,6 +18,8 @@ public class CarController : MonoBehaviour
     public Transform leftFrontWheel, rightFrontWheel;
     public float maxWheelTurn = 25f;
 
+    public Joystick joystick;
+
     //public ParticleSystem[] dustTrail;
     //public float maxEmission = 25f;
     //private float emissionRate;
@@ -32,20 +34,20 @@ public class CarController : MonoBehaviour
     void Update()
     {
         speedInput = 0f;
-        if(Input.GetAxis("Vertical") > 0)
+        if(joystick.Vertical > 0)
         {
-            speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
+            speedInput = joystick.Vertical * forwardAccel * 1000f;
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (joystick.Vertical < 0)
         {
-            speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
+            speedInput = joystick.Vertical * reverseAccel * 1000f;
         }
 
-        turnInput = Input.GetAxis("Horizontal");
+        turnInput = joystick.Horizontal;
 
         if (grounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrenght * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrenght * Time.deltaTime * joystick.Vertical, 0f));
         }
 
         leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) - 180, leftFrontWheel.localRotation.eulerAngles.z);

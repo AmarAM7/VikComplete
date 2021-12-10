@@ -45,7 +45,7 @@ public class RaycastShootComplete : MonoBehaviour
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
             // Declare a raycast hit to store information about what our raycast has hit
-            RaycastHit hit;
+            //RaycastHit hit;
 
             // Set the start position for our visual effect for our laser to the position of gunEnd
             laserLine.SetPosition(0, gunEnd.position);

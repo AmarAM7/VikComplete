@@ -18,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
 
     private Animator myAnimator;
     private CharacterController cc;
-    bool isGrounded = true;
+    //bool isGrounded = true;
 
     RaycastHit rayHit;
 

@@ -20,6 +20,9 @@ public class PlayerMove : MonoBehaviour
     public float lookXLimit = 60.0f;
     Vector2 rotation = Vector2.zero;
 
+    public Joystick joystick;
+    public Joystick rJoystick;
+
     // Use this for initialization
     void Start()
     {
@@ -63,8 +66,10 @@ public class PlayerMove : MonoBehaviour
 
         if (canMove)
         {
-            rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-            rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+            //rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+            //rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotation.y += rJoystick.Horizontal * lookSpeed;
+            rotation.x += -rJoystick.Vertical * lookSpeed;
             rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
             playerCameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
             transform.eulerAngles = new Vector2(0, rotation.y);
@@ -108,8 +113,10 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
+        //float curSpeedX = canMove ? speed * Input.GetAxis("Vertical") : 0;
+        //float curSpeedY = canMove ? speed * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? speed * joystick.Vertical : 0;
+        float curSpeedY = canMove ? speed * joystick.Horizontal : 0;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
         // Move the controller

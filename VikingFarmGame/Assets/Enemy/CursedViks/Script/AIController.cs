@@ -62,10 +62,14 @@ public class AIController : MonoBehaviour
         if (!m_IsPatrol)
         {
             Chasing();
+            anim.SetBool("isChasing", true);
+            anim.SetBool("isWalking", false);
         }
         else
         {
             Patroling();
+            anim.SetBool("isChasing", false);
+            anim.SetBool("isWalking", true);
         }
     }
 

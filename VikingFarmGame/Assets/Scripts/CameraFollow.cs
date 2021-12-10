@@ -23,7 +23,8 @@ public class CameraFollow : MonoBehaviour
 	private float rotY = 0.0f;
 	private float rotX = 0.0f;
 
-
+	public Joystick joystick;
+	public Joystick rJoystick;
 
 	// Use this for initialization
 	void Start()
@@ -31,8 +32,8 @@ public class CameraFollow : MonoBehaviour
 		Vector3 rot = transform.localRotation.eulerAngles;
 		rotY = rot.y;
 		rotX = rot.x;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
 	}
 
 	// Update is called once per frame
@@ -42,8 +43,8 @@ public class CameraFollow : MonoBehaviour
 		// We setup the rotation of the sticks here
 		float inputX = Input.GetAxis("RightStickHorizontal");
 		float inputZ = Input.GetAxis("RightStickVertical");
-		mouseX = Input.GetAxis("Mouse X");
-		mouseY = Input.GetAxis("Mouse Y");
+		mouseX = rJoystick.Horizontal;
+		mouseY = rJoystick.Vertical;
 		finalInputX = inputX + mouseX;
 		finalInputZ = inputZ + mouseY;
 

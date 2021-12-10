@@ -12,7 +12,7 @@ public class Land : MonoBehaviour, ITimeTracker
     public LandStatus landStatus;
 
     public Material soilMat, farmlandMat, wateredMat;
-    new Renderer renderer;
+    new Renderer rendererr;
 
     //The selection gameobject to enable when the player is selecting the land
     public GameObject select;
@@ -31,7 +31,7 @@ public class Land : MonoBehaviour, ITimeTracker
     void Start()
     {
         //Get the renderer component
-        renderer = GetComponent<Renderer>();
+        rendererr = GetComponent<Renderer>();
 
         //Set the land to soil by default
         SwitchLandStatus(LandStatus.Soil);
@@ -73,7 +73,7 @@ public class Land : MonoBehaviour, ITimeTracker
         }
 
         //Get the renderer to apply the changes
-        renderer.material = materialToSwitch; 
+        rendererr.material = materialToSwitch; 
     }
 
     public void Select(bool toggle)
